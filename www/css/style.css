@@ -1,0 +1,82 @@
+@charset "UTF-8";
+/* CSS Document */
+body{ position: relative; width: 100%; height: 100%;}
+body,p{
+	font-family: 'Molengo', sans-serif;
+    margin: 0px;
+    font-size: 14px;
+	}
+    
+nav{display: block;
+    position: absolute;
+    bottom:10px;
+    right:40px;
+    font-size:2em;
+    text-indent: 1em;
+    }
+nav li{display: inline-block;}
+
+.today{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto auto auto 20px;
+    width: 50%;
+    height:100px;
+}
+
+.month{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto auto auto 20px;
+    width: 50%;
+    height:40%;
+}
+
+.month .mo_t{
+    color: #D0111B;
+}
+
+table{
+    font-size: 1.6em;
+    width:100%;
+    text-align: center;
+}
+table th{ font-size: 0.5em;}
+
+@media screen and (min-width: 768px) {
+table{font-size: 2.5em;}
+}
+
+.year{
+	font-size:2em;
+    margin-bottom: -16px;
+	}
+.date{
+    font-size:4em;
+	}
+.weekday{
+    margin-left:10px;
+    font-size:0.5em;
+}
+
+#sketch{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+footer{
+    position: fixed;
+    bottom: 16px;
+    width: 100%;
+	text-align:center;
+	font-size:12px;
+	}

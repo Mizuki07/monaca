@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+<script src="components/loader.js"></script>
+<script src="lib/onsenui/js/onsenui.min.js"></script>
+
+<link rel="stylesheet" href="components/loader.css">
+<link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+<link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+
+<script src="js/jquery-3.0.0.min.js"></script>
+<script src="js/processing.js"></script>
+<script src="js/processing.min.js"></script>
+
+<title>テスト</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css?family=Molengo" rel="stylesheet">
+<script>
+//head内記載分
+var myDate = new Date();
+
+// 00表示
+var dateZellFill = function ( number ) {
+    return ( "0" + number ).substr( -2 ) ;
+}
+
+var myWeekTbl = new Array("sun", "mon", "tue", "wed", "thu", "fri", "sat");
+var myMonthTbl = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+if (((myYear%4)==0 && (myYear%100)!=0) || (myYear%400)==0){
+    myMonthTbl[1] = 29;
+} 
+  
+var myYear = myDate.getFullYear();
+var myMonth = myDate.getMonth() + 1;
+var myToday = myDate.getDate();
+var myWeek = myDate.getDay();
+  
+myDate.setDate(1); 
+var myWeek = myDate.getDay();//12月は０＝日曜日
+var myTblLine = Math.ceil((myWeek+myMonthTbl[myMonth])/7);//行数
+var myTable = new Array(7*myTblLine);
+  
+for(i=0; i<7*myTblLine; i++){
+    myTable[i]=".";    //適当に値を入れる
+}
+for(i=0; i<myMonthTbl[myMonth]; i++){
+    myTable[myWeek+i] =i+1;    //適当な空欄に日にちを入れる
+}
+var mode=0;//モード
+</script>
+</head>
+
+<body>
+<script type="text/javascript">
+    	function getScreenSize() {
+				var screenMax = (window.parent.screen.width < window.parent.screen.height) ? window.parent.screen.height : window.parent.screen.width;
+				logiW = screenMax;
+				logiH = screenMax;
+			return [logiW, logiH, window.innerWidth, window.innerHeight];
+		}
+		function changeGenScale(w, h) {
+			$("#sketch").width(w);
+			$("#sketch").height(h);
+		}
+		window.addEventListener('resize', function(event) {
+			var w = window.innerWidth;
+			var h = window.innerHeight;
+			processingInstance = Processing.getInstanceById('sketch');
+ 			processingInstance.updateScale(w, h);
+		});
+</script>
+<canvas id="sketch" data-processing-sources="pde/pde.pde"></canvas>
+<script>
+    //日めくりモード
+    document.write("<div class = \"today\" ><p class = \"year\" >" + myYear+ "</p><p class = \"date\" >" +dateZellFill(myMonth)+ "/" +myToday +"<span class=\"weekday\">" +myWeekTbl[myWeek-1]+"</span></p></div>");
+    //カレンダー
+    document.write("<div class=\"month\"><p class = \"date\">"+dateZellFill(myMonth)+"</p><table>") ;
+    for(j=0; j<7; j++){
+    document.write("<th>"+myWeekTbl[j]+"</th>");
+    }
+    
+    for(i=0; i<myTblLine; i++){
+        document.write("<tr>");
+        for(j=0; j<7; j++){
+        myDat = myTable[j+(i*7)];//ポイント→日にちの計算方法
+        if(myDat==myToday){//今日       
+            document.write("<td class=\"mo_t\">");         
+            }else{  
+            document.write("<td>");
+            }
+            document.write(myDat);
+            document.write("</td>");
+        }
+        document.write("</tr>");
+    }
+    document.write("</table></div>");
+    
+    $(function(){
+    $('#nav01').bind('click touchend',function() {
+        $(".today").fadeIn("slow");
+        $(".month").fadeOut("slow");
+        $(this).fadeOut(slow);
+        $('#nav02').fadeIn(slow);
+        mode=0;
+    });
+    $('#nav02').bind('click touchend',function() {
+        $(".today").fadeOut("slow");
+        $(".month").fadeIn("slow");
+        $(this).fadeOut(slow);
+        $('#nav01').fadeIn(slow);
+        mode=1;
+    });
+    $('#nav03').on('click touchend',function() {
+        $(".today").fadeOut("slow");
+        $(".month").fadeOut("slow");
+        mode=2;
+    });
+    });
+
+    
+</script>
+<nav><ul>
+<li id="nav01">D</li>
+<li id="nav02">M</li>
+</ul></nav>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+<script src="js/jquery-3.0.0.min.js"></script>
+<script src="js/processing.js"></script>
+<script src="js/processing.min.js"></script>
+
+<title>テスト</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css?family=Molengo" rel="stylesheet">
+
+<script>// Dateオブジェクトを作成
+var dateObj = new Date() ;
+
+// 曜日の表記
+var weekDayList = [ "sun", "mon", "tue", "wed", "thu", "fri", "sat" ] ;
+
+// 0埋め用の関数
+var dateZellFill = function ( number ) {
+	return ( "0" + number ).substr( -2 ) ;
+}
+
+// 日時の各情報を取得
+var year = dateObj.getFullYear() ;	// 年
+var month = dateZellFill( dateObj.getMonth() + 1 ) ;	// 月
+var date = dateZellFill( dateObj.getDate() ) ;	// 日
+var hour = dateZellFill( dateObj.getHours() ) ;	// 時
+var minute = dateZellFill( dateObj.getMinutes() ) ;	// 分
+var second = dateZellFill( dateObj.getSeconds() ) ;	// 秒
+var weekDay = weekDayList[ dateObj.getDay() ] ;	// 曜日
+
+</script>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+<script>
+var w = $(window).innerWidth();
+var h = $(window).innerHeight()-50;
+
+  function sketchProc(processing) {
+    processing.setup = function() {
+      processing.size(w,h);
+      processing.background(255);
+      processing.noStroke();
+    }
+
+    processing.draw = function() {
+    processing.fill(240);
+    processing.beginShape();
+    processing.vertex(0, 0);
+    processing.vertex(w/2-20, h/2);
+    processing.vertex(0,h);
+    processing.vertex(w,h);
+    processing.vertex(w/2+20,h/2);
+    processing.vertex(w/2+20,h/2);
+    processing.vertex(w, 0);
+    processing.endShape();
+    }
+  }
+
+  var canvas = document.getElementById("canvas");
+  var p = new Processing(canvas, sketchProc);
+  
+  document.write("<div class = \"figure\" ><p class = \"year\" >" + year + "</p><p class = \"date\" >" + month + "/" + date + "</p></div>" );
+
+  </script>
+
+<footer>Copyright(C) Replug All Rights Reserved.</footer>
+</body>
+</html>

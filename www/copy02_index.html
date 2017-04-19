@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+<script src="components/loader.js"></script>
+<script src="lib/onsenui/js/onsenui.min.js"></script>
+
+<link rel="stylesheet" href="components/loader.css">
+<link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+<link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+
+<script src="js/jquery-3.0.0.min.js"></script>
+<script src="js/processing.js"></script>
+<script src="js/processing.min.js"></script>
+
+<title>テスト</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css?family=Molengo" rel="stylesheet">
+
+<script>
+var dateObj = new Date() ;
+var weekDayList = [ "sun", "mon", "tue", "wed", "thu", "fri", "sat" ] ;
+var myMonthTbl = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+if (((year%4)==0 && (year%100)!=0) || (year%400)==0){
+    myMonthTbl[1] = 29;
+}
+// 00表示
+var dateZellFill = function ( number ) {
+	return ( "0" + number ).substr( -2 ) ;
+}
+
+// 日時の各情報を取得
+var year = dateObj.getFullYear() ;	// 年
+var month = dateZellFill( dateObj.getMonth() + 1 ) ;	// 月
+var date = dateZellFill( dateObj.getDate() ) ;	// 日
+var weekDay = weekDayList[ dateObj.getDay() ] ;    // 曜日
+var hour = dateZellFill( dateObj.getHours() ) ;	// 時
+var minute = dateZellFill( dateObj.getMinutes() ) ;	// 分
+var second = dateZellFill( dateObj.getSeconds() ) ;	// 秒
+
+dateObj.setDate(1);
+var weekDay = dateObj.getDay();
+var myTblLine = Math.ceil((weekDay+myMonthTbl[month])/7);
+var myTable = new Array(7*myTblLine);
+for(i=0; i<7*myTblLine; i++){
+    myTable[i]="-";
+}
+for(i=0; i<myMonthTbl[month]; i++){
+    myTable[weekDay+i] =i+1;
+}
+
+window.open = cordova.InAppBrowser.open;
+</script>
+
+</head>
+<body>
+<script type="text/javascript">
+		function getScreenSize() {
+				var screenMax = (window.parent.screen.width < window.parent.screen.height) ? window.parent.screen.height : window.parent.screen.width;
+				logiW = screenMax;
+				logiH = screenMax;
+			return [logiW, logiH, window.innerWidth, window.innerHeight];
+		}
+		function changeGenScale(w, h) {
+			$("#sketch").width(w);
+			$("#sketch").height(h);
+		}
+		window.addEventListener('resize', function(event) {
+			var w = window.innerWidth;
+			var h = window.innerHeight;
+			processingInstance = Processing.getInstanceById('sketch');
+ 			processingInstance.updateScale(w, h);
+		});
+</script>
+<canvas id="sketch" data-processing-sources="pde/pde.pde"></canvas>
+<script>
+var mode=0;//モード
+
+if(mode==0){
+    //日めくりモード
+    document.write("<div class = \"today\" ><p class = \"year\" >" 
+    + year + "</p><p class = \"date\" >" + month + "/" + date +"<span class=\"weekday\">"
+    + weekDay +"</span></p></div>");
+}else{
+    //カレンダーモード
+    document.write("<div class = \"month\" ><table border='1'>");
+    for(i=0; i<myTblLine; i++){
+        document.write("<tr>");
+        for(j=0; j<7; j++){
+            document.write("<td>");
+            myDat = myTable[j+(i*7)];
+            document.write(myDat);
+            document.write("</td>");
+        }
+        document.write("</tr>");
+    }
+    document.write("</table></div>");
+}
+
+</script>
+<footer>Copyright(C) Replug All Rights Reserved.</footer>
+</body>
+</html>
