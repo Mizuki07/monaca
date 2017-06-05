@@ -11,6 +11,17 @@
         "cordova-plugin-whitelist@1.2.2",
         "cordova-plugin-splashscreen@3.2.2",
         "cordova-custom-config@2.0.3",
-        "cordova-plugin-inappbrowser@1.5.0"
-    ]
+        "cordova-plugin-inappbrowser@1.5.0",
+        "cordova-plugin-statusbar@2.1.3",
+        "cordova-plugin-device-motion@1.2.1"
+    ],
+    "title-ja": "",
+    "title-en": "",
+    "description-ja": "",
+    "description-en": "",
+    "category": "User Template",
+    "platform": [
+        "ios"
+    ],
+    "name": "generated-1496634761-584e16c5ff2af2816741a521"
 }

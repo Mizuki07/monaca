@@ -1,20 +1,48 @@
 @charset "UTF-8";
 /* CSS Document */
-body{ position: relative; width: 100%; height: 100%;}
+
+@font-face {
+    font-family: 'Gidole';
+    src: url("../font/Gidole.woff") format('woff'),
+         url('../font/Gidole.ttf') format('truetype');
+}
+
+body{ position: relative; width: 100%; height: 100%; color: #333333;
+    ont-feature-settings : "palt";}
 body,p{
-	font-family: 'Molengo', sans-serif;
+	font-family: 'Gidole', sans-serif;
     margin: 0px;
     font-size: 14px;
+    letter-spacing:-0.05em;
 	}
     
+li { list-style: none;}
+    
+a{ color:#333333; text-decoration: none;}
+
 nav{display: block;
     position: absolute;
-    bottom:10px;
-    right:40px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;  
     font-size:2em;
     text-indent: 1em;
+    width: 100%;
+    height: 50px;
     }
-nav li{display: inline-block;}
+
+#nav01{float: left; text-align: left; margin-left: 20px; display: none;}
+
+#nav02{float: right; text-align: right; margin-right: 20px;}
+
+#close{
+        display: none;
+        position: absolute;
+        margin: auto; 
+        left:20px;
+        top:20px;}
 
 .today{
     display: block;
@@ -35,42 +63,61 @@ nav li{display: inline-block;}
     left: 0;
     right: 0;
     bottom: 0;
-    margin: auto auto auto 20px;
-    width: 50%;
+    margin: auto 20px auto auto;
+    width: 52%;
     height:40%;
+    font-size: 1.6em;    
 }
+
+.month p{font-size: 1.6em;}
+
+.month table{
+    text-align: center;
+    width: 100%;
+}
+
+.month table th{ font-size: 0.5em;}
 
 .month .mo_t{
     color: #D0111B;
 }
 
-table{
-    font-size: 1.6em;
-    width:100%;
-    text-align: center;
-}
-table th{ font-size: 0.5em;}
 
-@media screen and (min-width: 768px) {
-table{font-size: 2.5em;}
-}
 
-.year{
+#year{
 	font-size:2em;
-    margin-bottom: -16px;
+    margin-bottom: -10px;
 	}
-.date{
-    font-size:4em;
+#date{
+    font-size:5em;
+    display: inline;
 	}
-.weekday{
-    margin-left:10px;
-    font-size:0.5em;
+#weekday{
+    margin-left:5px;
+    font-size:2em;
+    display: inline;
 }
 
-#sketch{
+#timer{
+    display: none;
     position: absolute;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto 20px auto auto;
+    width: 50%;
+    height:100px;
+    font-size:5em;
+    transform:rotate(180deg);
+}
+
+#sketch{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #786364;
 }
 
 footer{
@@ -80,3 +127,9 @@ footer{
 	text-align:center;
 	font-size:12px;
 	}
+    
+@media screen and (min-width: 768px) {
+body,p{font-size: 24px;}
+
+
+}
