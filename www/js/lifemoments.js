@@ -27,6 +27,7 @@
         setInterval(changeMode2,200);    
         window.StatusBar.hide(true);
     });
+    
         
     // 00表示
     var dateZellFill = function ( number ) {

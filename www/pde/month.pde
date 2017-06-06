@@ -3,10 +3,10 @@ class Month{
   int sandAmount;
   int pastDay;
   color[][] sndClor ={
-  {#fadbd9, #ef8a9c, #f8c5ac, #fff799},//春
-  {#00a0e9, #9fd9f6, #d4ecea, #fff100},//夏
-  {#e5a83f, #5b5300, #562e00, #db5425},//秋
-  {#b9c3c9, #94abc1, #7ecef4, #88abda} //冬
+  {#b9c3c9, #94abc1, #7ecef4, #88abda}, //冬 0
+  {#fadbd9, #ef8a9c, #f8c5ac, #fff799},//春 1
+  {#00a0e9, #9fd9f6, #d4ecea, #fff100},//夏 2
+  {#e5a83f, #ceaf06, #9c580a, #db5425}//秋 3
   };
   int season;
   int colorNum=0;
@@ -35,7 +35,7 @@ class Month{
   test = pastDay;
   
   sandAmount = int((pastDay/365)*(height/2));
-  season = int((myMonth-3)/3);
+  season = floor(myMonth/3)%4;
   count ++;
   background(240);
  
