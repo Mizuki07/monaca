@@ -7,14 +7,14 @@ class Timer{
 
   Sand[] sands = new Sand[100];
   int count;
+  int SerNum;
+  color bgColors[] = {color(200,100), color(180,100),  color(160,100) , color(120,100)};
+  color bgColor = color(120,100);
+  int colorNum = 3;
   
   Timer(){  
-  for(int i=0; i<sands.length; i++){
-  Sand sand = new Sand(i);
-  sands[i] = sand;
-  }
   mil_ = millis();
-  
+  textAlign(CENTER, TOP);
   }
   
   void draw(){
@@ -34,14 +34,23 @@ class Timer{
   
   count ++;
   background(240);   
-  stroke(50);
-      for(int i=0; i<sands.length; i++){
-        if(i < (count)){
-          sands[i].draw();
-        }
-      }      
-
+  if(count%60 ==0 && SerNum<180){
+    SandNum sand = new SandNum(SerNum,bgColor,colorNum);
+    sands[SerNum] = sand;
+    SerNum++;
+    colorNum=int(random(bgColors.length));
+    bgColor = bgColors[colorNum];
+  }
+ 
+  for(int i=0; i<sands.length; i++){
+    if(i < (count) && sands[i] != null){
+      sands[i].draw();
+    }
+  }
+  fill(160); 
+  
   }else{
+  fill(#ff9096); 
   sandAmount = h/2;
   remMin = 0;
   remSec = 0;
@@ -51,7 +60,6 @@ class Timer{
     
   //砂
   noStroke();
-  fill(160);
   pushMatrix();
   translate(0,h/2);
   scale(1,-1);
@@ -77,4 +85,40 @@ class Timer{
   
   popMatrix();
 }
+}
+
+class SandNum{
+  float x;
+  float y;
+  int y_ini_;
+  int count;
+  int SerNum_;
+  float rot;
+  color bgColor_;
+  int colorNum_;
+  
+  SandNum(int SerNum ,color bgColor , int colorNum){
+  x = width/2;
+  rot = random(-1,1);
+  y_ini_ = h/2;
+  y = y_ini_;
+  SerNum_ = SerNum;
+  bgColor_=bgColor;
+  colorNum_ = colorNum;
+  }
+
+  void draw(){
+    if( y <=h){
+    count++;
+    fill(bgColor_);
+    pushMatrix();
+    translate(x,y);
+    pushMatrix();
+    rotate(rot); 
+    text(180-SerNum_, 0, 0);
+    popMatrix();
+    popMatrix();
+    y = y_ini_ + count*9.8*(colorNum_+1)*0.1;
+    }
+    }
 }

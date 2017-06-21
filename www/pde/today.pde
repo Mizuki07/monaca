@@ -11,7 +11,7 @@ class Today{
   
   Today(){
   for(int i=0; i<sands.length; i++){
-  Sand sand = new Sand(i);
+  Sand sand = new Sand();
   sands[i] = sand;
   } 
   }

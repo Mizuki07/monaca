@@ -16,7 +16,7 @@ class Month{
   
   Month(){
   for(int i=0; i<sands.length; i++){
-  Sand sand = new Sand(i);
+  Sand sand = new Sand();
   sands[i] = sand;
   }
   }
@@ -32,7 +32,7 @@ class Month{
   }
   }
   pastDay = pastDay + myToday;
-  test = pastDay;
+  _pastDay = pastDay;
   
   sandAmount = int((pastDay/365)*(height/2));
   season = floor(myMonth/3)%4;

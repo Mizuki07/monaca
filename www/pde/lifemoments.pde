@@ -1,5 +1,6 @@
 /* //@pjs pauseOnBlur="true"; */
 /* //@pjs globalKeyEvents="true"; */
+/*@pjs font="./font/Gidole-Regular_min.ttf";*/
 
 //int w = $(window).innerWidth();
 //int h = $(window).innerHeight();
@@ -18,6 +19,8 @@ void setup(){
   frameRate(60);
   noStroke();
   textAlign(LEFT, CENTER);
+  PFont myFont = loadFont("./font/Gidole-Regular_min.ttf");
+  textFont(myFont,42); 
 }
 
 void draw(){
@@ -53,9 +56,10 @@ class Sand{
   int y_ini_;
   int count;
   
-  Sand(int y_ini){
+  Sand(){
   x = random(width/2-8, width/2+8);
   y_ini_ = h/2;
+  y = y_ini_;
   }
 
   void draw(){
