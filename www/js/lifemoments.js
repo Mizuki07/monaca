@@ -9,7 +9,7 @@
     var mySeconds = myDate.getSeconds();
     var myWeekTbl = new Array("sun", "mon", "tue", "wed", "thu", "fri", "sat");        
     var myMonthTbl = new Array(31,29,31,30,31,30,31,31,30,31,30,31);
-    
+   
     var myNumDays=0;
     
     var upSideDown=0;
@@ -109,7 +109,7 @@
         _pastMinutes = (_pastDay-1)*1440 + myHour*60 + myMinutes;
         document.getElementById('minutes').innerHTML = (myNumDays*1440 - _pastMinutes).toLocaleString();
     }        
-    setInterval('loop()',100);
+    setInterval('loop()',500);
     
 //Mode change
     //to Mode01
@@ -225,7 +225,7 @@
     }
     function remSeconds(){
         document.getElementById('timer').innerHTML =dateZellFill(remMin_) + ":" + dateZellFill(remSec_) ;
-        if(remSec_ == 1 ){navigator.vibrate(1000);}
+        //if(remSec_ == 1 ){navigator.vibrate(1000);}
     }
 
    

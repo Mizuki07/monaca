@@ -1,6 +1,5 @@
 /* //@pjs pauseOnBlur="true"; */
 /* //@pjs globalKeyEvents="true"; */
-/*@pjs font="./font/Gidole-Regular_min.ttf";*/
 
 //int w = $(window).innerWidth();
 //int h = $(window).innerHeight();
@@ -11,7 +10,7 @@ int h = h_;
 Timer timer;
 Month month;
 Today today;
-int mode;
+int mode=0;
 
 void setup(){
   size(w,h);
@@ -19,8 +18,6 @@ void setup(){
   frameRate(60);
   noStroke();
   textAlign(LEFT, CENTER);
-  PFont myFont = loadFont("./font/Gidole-Regular_min.ttf");
-  textFont(myFont,42); 
 }
 
 void draw(){

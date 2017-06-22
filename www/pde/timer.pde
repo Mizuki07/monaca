@@ -7,13 +7,13 @@ class Timer{
 
   Sand[] sands = new Sand[100];
   int count;
-  int SerNum;
+  int SerNum =1;
   color bgColors[] = {color(200,100), color(180,100),  color(160,100) , color(120,100)};
   color bgColor = color(120,100);
   int colorNum = 3;
   
   Timer(){  
-  mil_ = millis();
+  //mil_ = millis();
   textAlign(CENTER, TOP);
   }
   
@@ -21,26 +21,25 @@ class Timer{
   pushMatrix();
   translate(w,h);
   rotate(PI);
-  mil = millis();
-  
-  if(((mil - mil_)/180000)<1){
-   
-  remMin = int((181000-(mil - mil_))/1000/60);
-  remSec = (180 - int((mil - mil_)/1000))%60;
+  mil = int(count/60);  
+  if((mil/180)<=1){   
+  sandAmount = int((mil/180)*(height/2));  
+  remMin = int((181-mil)/60);//分
+  remSec = (180 - mil)%60;//秒
   remMin_ = remMin;
   remSec_ = remSec;
   
-  sandAmount = int(((mil - mil_)/180000)*(height/2));
-  
   count ++;
-  background(240);   
-  if(count%60 ==0 && SerNum<180){
+  background(240);
+  /*
+  if(count%60 ==0 && SerNum<=180){
     SandNum sand = new SandNum(SerNum,bgColor,colorNum);
     sands[SerNum] = sand;
     SerNum++;
     colorNum=int(random(bgColors.length));
     bgColor = bgColors[colorNum];
   }
+  */
  
   for(int i=0; i<sands.length; i++){
     if(i < (count) && sands[i] != null){
@@ -57,7 +56,7 @@ class Timer{
   remMin_ = remMin;
   remSec_ = remSec;
   }
-    
+       
   //砂
   noStroke();
   pushMatrix();
@@ -115,7 +114,8 @@ class SandNum{
     translate(x,y);
     pushMatrix();
     rotate(rot); 
-    text(180-SerNum_, 0, 0);
+    //text(180-SerNum_, 0, 0);
+    rect(0,0,20,20);
     popMatrix();
     popMatrix();
     y = y_ini_ + count*9.8*(colorNum_+1)*0.1;
